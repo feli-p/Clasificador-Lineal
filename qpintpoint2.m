@@ -15,7 +15,7 @@ function [x, mu, z, iter] = qpintpoint2(Q,F,c,d)
 
 tol = 1e-05;    % tolerancia a las condiciones necesarias de primer orden
                 % para un mínimo local
-maxiter = 100;  % número máximo de iteraciones permitidas
+maxiter = 200;  % número máximo de iteraciones permitidas
 
 iter = 0;
 gamma = 0.5;
@@ -73,7 +73,6 @@ function [alfa] = recorta(u,v)
 % Recorta la longitud del vector v tal que
 %       u + alfa*v >= 0
 %       donde u > 0.
-% tol - describe cuánto nos vamos a aproximar al cero
 % Rutina para puntos interiores.
 
 n = length(v);
