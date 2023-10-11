@@ -32,7 +32,11 @@ G = [Q*x-F'*mu+c;
      -F*x+z+d;
      mu.*z];
 
-while(norm(G) > tol && iter < maxiter)
+% vector para graficación
+cnpo = [];
+norma = norm(G);
+disp('Iter     CNPO')
+while(norma > tol && iter < maxiter)
     JacobianG = [   Q        -F'        zeros(n,p);
                    -F      zeros(p)    eye(p);
               zeros(p,n)   diag(z)     diag(mu);
@@ -64,9 +68,16 @@ while(norm(G) > tol && iter < maxiter)
 
     iter = iter +1;
     gamma = gamma/2;
-    fprintf('%3.0f %2.8f \n', iter, norm(G))
+    norma = norm(G);
+    cnpo = [cnpo norma];
+    fprintf('%3.0f %2.8f \n', iter, norma)
 end
 
+figure;
+semilogy([1:iter], cnpo)
+xlabel('Número de iteraciones')
+ylabel('CNPO')
+title('Convergencia del método de puntos interiores')
 end
 
 function [alfa] = recorta(u,v)
