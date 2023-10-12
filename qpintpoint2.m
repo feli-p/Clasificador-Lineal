@@ -33,7 +33,7 @@ G = [Q*x-F'*mu+c;
      mu.*z];
 
 % vector para graficación
-cnpo = [];
+cnpo = zeros(1,maxiter);
 norma = norm(G);
 disp('Iter     CNPO')
 while(norma > tol && iter < maxiter)
@@ -69,11 +69,12 @@ while(norma > tol && iter < maxiter)
     iter = iter +1;
     gamma = gamma/2;
     norma = norm(G);
-    cnpo = [cnpo norma];
+    cnpo(iter) = norma;
     fprintf('%3.0f %2.8f \n', iter, norma)
 end
 
 figure;
+cnpo = cnpo(1:iter);
 semilogy(1:iter, cnpo)
 xlabel('Número de iteraciones')
 ylabel('CNPO')
