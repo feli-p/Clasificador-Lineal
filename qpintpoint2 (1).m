@@ -74,7 +74,7 @@ while(norma > tol && iter < maxiter)
 end
 
 figure;
-semilogy([1:iter], cnpo)
+semilogy(1:iter, cnpo)
 xlabel('Número de iteraciones')
 ylabel('CNPO')
 title('Convergencia del método de puntos interiores')
